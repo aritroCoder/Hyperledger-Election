@@ -85,8 +85,8 @@ func (s *SmartContract) AddVoter(ctx contractapi.TransactionContextInterface) er
 // edited as per https://stackoverflow.com/questions/69637688/json-encode-in-golang-fabric-chaincode-behavior
 type Persons struct {
 	Dumb bool `json:"dumb"`
-	clientId string `json:"clientid,omitempty" metadata:",optional"`
-	numId    int `json:"numid,omitempty" metadata:",optional"`
+	ClientId string `json:"clientid,omitempty" metadata:",optional"`
+	NumId    int `json:"numid,omitempty" metadata:",optional"`
 }
 
 // display all voters with their ids
@@ -111,7 +111,7 @@ func (s *SmartContract) GetAllVoters(ctx contractapi.TransactionContextInterface
 
 	var voterList []*Persons
 	for k, v := range electionStruct.Voters {
-		newItem := Persons{clientId: k, numId: v}
+		newItem := Persons{ClientId: k, NumId: v}
 		voterList = append(voterList, &newItem)
 	}
 	
@@ -140,7 +140,7 @@ func (s *SmartContract) GetAllCandidates(ctx contractapi.TransactionContextInter
 
 	var voterList []*Persons
 	for k := range electionStruct.Candidates {
-		newItem := Persons{clientId: k, numId: electionStruct.Voters[k]}
+		newItem := Persons{ClientId: k, NumId: electionStruct.Voters[k]}
 		voterList = append(voterList, &newItem)
 	}
 
